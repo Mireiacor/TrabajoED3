@@ -26,7 +26,7 @@ public class InsertarDatos {
 
 			// Crear consulta
 			Statement consulta = conexion.createStatement();
-			consulta.executeUpdate("INSERT INTO persona (DNI, nombre, apellidos, direccion, telefono, idPelicula)\r\n"
+			consulta.executeUpdate("INSERT INTO persona (DNI, nombre, apellidos, direccion, telefono, idPelicula)"
 					+ "	VALUES ('" + p.getDNI() + "', '" + p.getNombre() + "', '" + p.getApellidos() + "', '"
 					+ p.getDireccion() + "', " + p.getTelefono() + ", (SELECT idPelicula FROM pelicula WHERE titulo = '"
 					+ pe.getTitulo() + "'))");
