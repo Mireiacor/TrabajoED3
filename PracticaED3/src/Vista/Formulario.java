@@ -3,41 +3,50 @@ package Vista;
 import java.util.Scanner;
 
 import Controlador.ConsultarDatos;
-import Controlador.InsertarDatos;
 import Modelo.Libro;
 import Modelo.Pelicula;
 import Modelo.Persona;
 
 public class Formulario {
+	/**
+	 * Método principal
+	 */
 
 	public void formularioPrincipal() {
 		Scanner teclado = new Scanner(System.in);
-		System.out.println("¿Quiere comprar una película o un libro?");
-		String opcion;
+		System.out.println("BIENVENIDOS A LA BIBLIOTECA");
+		System.out.println(
+				"••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••");
+		System.out.print("¿Quiere comprar una película o un libro? ");
 		char respuesta = teclado.nextLine().charAt(0);
 		if (respuesta == 'p' || respuesta == 'P') {
 			ConsultarDatos c = new ConsultarDatos();
-			InsertarDatos i = new InsertarDatos();
 			Pelicula p = new Pelicula();
 			System.out.print("Introduzca el título de la película que quiere consultar: ");
 			p.setTitulo(teclado.nextLine());
+			System.out.println(
+					"••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••");
 			c.consultarPelicula(p);
-			i.insertarPelicula();
 		} else if (respuesta == 'l' || respuesta == 'L') {
 			ConsultarDatos c = new ConsultarDatos();
-			InsertarDatos i = new InsertarDatos();
 			Libro l = new Libro();
 			System.out.print("Introduzca el título del libro que quiere consultar: ");
 			l.setTitulo(teclado.nextLine());
-			c.consultarLibro();
-			i.insertarLibro();
+			c.consultarLibro(l);
 		}
 	}
 
+	/**
+	 * Método que pide al usuario los datos para realizar la compra de una película
+	 * 
+	 * @param p
+	 */
 	public void pideDatosPelicula(Persona p) {
 		Scanner teclado = new Scanner(System.in);
-		System.out.println("¿Quiere comprar la película?");
+		System.out.print("¿Quiere comprar la película?");
 		char respuesta = teclado.nextLine().charAt(0);
+		System.out.println(
+				"••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••");
 		if (respuesta == 's' || respuesta == 'S') {
 			System.out.print("Introduzca su DNI: ");
 			p.setDNI(teclado.nextLine());
@@ -49,14 +58,24 @@ public class Formulario {
 			p.setDireccion(teclado.nextLine());
 			System.out.print("Introduzca teléfono: ");
 			p.setTelefono(teclado.nextInt());
+			System.out.println(
+					"••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••");
 		} else {
 			System.out.println("¡HASTA PRONTO!");
 		}
 	}
+
+	/**
+	 * Método para pedir al usuario los datos para realizar la compra de un libro
+	 * 
+	 * @param p
+	 */
 	public void pideDatosLibro(Persona p) {
 		Scanner teclado = new Scanner(System.in);
-		System.out.println("¿Quiere comprar el libro?");
+		System.out.print("¿Quiere comprar el libro?");
 		char respuesta = teclado.nextLine().charAt(0);
+		System.out.println(
+				"••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••");
 		if (respuesta == 's' || respuesta == 'S') {
 			System.out.print("Introduzca su DNI: ");
 			p.setDNI(teclado.nextLine());
@@ -68,30 +87,10 @@ public class Formulario {
 			p.setDireccion(teclado.nextLine());
 			System.out.print("Introduzca teléfono: ");
 			p.setTelefono(teclado.nextInt());
+			System.out.println(
+					"••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••");
 		} else {
 			System.out.println("¡HASTA PRONTO!");
-		}
-	}
-
-
-	public void pideDatosConsulta() {
-		Pelicula p = new Pelicula();
-		Libro l = new Libro();
-		Scanner teclado = new Scanner(System.in);
-		System.out.println("¿Quieres consultar una película o un libro?");
-		String opcion;
-		opcion = teclado.nextLine();
-		char respuesta = teclado.nextLine().charAt(0);
-		if (respuesta == 'p' || respuesta == 'P') {
-			ConsultarDatos c = new ConsultarDatos();
-			c.consultarPelicula(p);
-			System.out.print("Introduzca el título de la película que quiere consultar: ");
-			p.setTitulo(teclado.nextLine());
-		} else if (respuesta == 'l' || respuesta == 'L') {
-			ConsultarDatos c = new ConsultarDatos();
-			c.consultarLibro();
-			System.out.print("Introduzca el título del libro que quiere consultar: ");
-			l.setTitulo(teclado.nextLine());
 		}
 	}
 

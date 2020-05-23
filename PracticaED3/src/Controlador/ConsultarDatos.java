@@ -12,22 +12,28 @@ import Modelo.Persona;
 import Vista.Formulario;
 
 public class ConsultarDatos {
+	/**
+	 * Método para consultar películas que hay en la base de datos
+	 * 
+	 * @param p
+	 */
 	public void consultarPelicula(Pelicula p) {
 		Formulario f = new Formulario();
 		Persona pe = new Persona();
 		try {
-			Connection conexion = DriverManager.getConnection("jdbc:mysql://localhost/biblioteca", "biblioteca", "biblioteca");
+			Connection conexion = DriverManager.getConnection("jdbc:mysql://localhost/biblioteca", "root", "");
 			Statement consulta = conexion.createStatement();
 			ResultSet registro = consulta.executeQuery(
 					"SELECT titulo, genero, anio, precio " + "FROM pelicula WHERE titulo = '" + p.getTitulo() + "'");
-			//select titulo, genero, anio, precio FROM pelicula where titulo = 'Joker'
+			// select titulo, genero, anio, precio FROM pelicula where titulo = 'Joker'
 			if (registro.next()) {
 				String nom = registro.getString("titulo");
 				System.out.println("Titulo: " + registro.getString("titulo"));
 				System.out.println("Género: " + registro.getString("genero"));
 				System.out.println("Año: " + registro.getString("anio"));
 				System.out.println("Precio: " + registro.getString("precio"));
-				f.pideDatosPelicula(pe);
+				InsertarDatos i = new InsertarDatos();
+				i.insertarPelicula(p);
 			} else {
 				System.out.println("La película introducida no está en nuestra base de datos");
 			}
@@ -36,21 +42,27 @@ public class ConsultarDatos {
 			ex.printStackTrace();
 		}
 	}
-	
-	public void consultarLibro() {
+
+	/**
+	 * Método para consultar libros que hay en la base de datos
+	 * 
+	 * @param l
+	 */
+	public void consultarLibro(Libro l) {
 		Formulario f = new Formulario();
-		Libro l = new Libro();
 		try {
 			Connection conexion = DriverManager.getConnection("jdbc:mysql://localhost/biblioteca", "root", "");
 			Statement consulta = conexion.createStatement();
 			ResultSet registro = consulta.executeQuery(
-					"select titulo, autor, ISBN, precio " + "from libro where titulo = " + l.getTitulo());
+					"SELECT titulo, autor, ISBN, precio " + "FROM libro WHERE titulo = '" + l.getTitulo() + "'");
 			if (registro.next()) {
 				String nom = registro.getString("titulo");
 				System.out.println("Titulo: " + registro.getString("titulo"));
 				System.out.println("Autor: " + registro.getString("autor"));
 				System.out.println("ISBN: " + registro.getString("ISBN"));
 				System.out.println("Precio: " + registro.getString("precio"));
+				InsertarDatos i = new InsertarDatos();
+				i.insertarLibro(l);
 			} else {
 				System.out.println("El libro introducido no está en nuestra base de datos");
 			}
